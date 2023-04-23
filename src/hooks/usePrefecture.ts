@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { findPopulationCategoryIndex } from '@/libs/common';
 
@@ -29,9 +29,7 @@ export const usePrefecture = () => {
   const [allPopulationData, setAllPopulationData] =
     useState<AllPopulationDataProps>({});
 
-  const onRadioButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPopulationCategory(e.target.value);
-
+  useEffect(() => {
     const categoryIndex = findPopulationCategoryIndex(populationCategory);
 
     if (Object.keys(allPopulationData).length > 0) {
@@ -47,6 +45,10 @@ export const usePrefecture = () => {
       });
       setGraphData(newGraphData);
     }
+  }, [populationCategory]);
+
+  const onRadioButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPopulationCategory(e.target.value);
   };
 
   const onCheckboxesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
