@@ -27,3 +27,8 @@ export type YearData = {
   value: number;
   rate?: number;
 };
+
+export type TextProps = {
+  className?: string;
+  children?: React.ReactNode;
+};

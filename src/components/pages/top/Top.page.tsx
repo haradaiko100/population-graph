@@ -1,6 +1,7 @@
 import { Checkbox } from '@/components/elements/Checkbox/Checkbox';
 import { PopulationGraph } from '@/components/elements/Graph/Graph';
 import { RadioButton } from '@/components/elements/Radiobutton/Radiobutton';
+import { PrimaryHeading } from '@/components/elements/Text/Text';
 import { MainLayout } from '@/components/layout/Layout';
 
 import { usePrefecture } from '@/hooks/usePrefecture';
@@ -25,7 +26,7 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
     <MainLayout meta={META.top}>
       <div className={styles.container}>
         <div>
-          <h2 className={styles.title}>都道府県</h2>
+          <PrimaryHeading>都道府県</PrimaryHeading>
           <div className={styles.prefecture_container}>
             {ListPrefectures.map((prefecture: Prefecture) => (
               <div key={prefecture.prefCode}>
@@ -36,7 +37,7 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
               </div>
             ))}
           </div>
-          <h2 className={styles.title}>人口種類別</h2>
+          <PrimaryHeading>人口種類別</PrimaryHeading>
           <div className={styles.population_category_container}>
             {PopulationTypes.map((populationType) => (
               <div key={populationType}>
