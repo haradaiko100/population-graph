@@ -87,7 +87,7 @@ export const usePrefecture = () => {
           setGraphData(newData);
         }
       } catch (error) {
-        console.log(error);
+        return;
       }
     } else {
       // checkが外れた県は削除する

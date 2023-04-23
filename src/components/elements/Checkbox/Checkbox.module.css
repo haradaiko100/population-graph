@@ -1,0 +1,32 @@
+.checkbox_container {
+  display: flex;
+  width: 20%;
+  text-align: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox_container label {
+  margin-left: 8px;
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  .checkbox_container {
+    width: 25%;
+  }
+  .checkbox_container label {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .checkbox_container {
+    width: 50%;
+  }
+  .checkbox_container label {
+    font-size: 14px;
+  }
+}

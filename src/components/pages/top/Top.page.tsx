@@ -29,12 +29,11 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
           <PrimaryHeading>都道府県</PrimaryHeading>
           <div className={styles.prefecture_container}>
             {ListPrefectures.map((prefecture: Prefecture) => (
-              <div key={prefecture.prefCode} className={styles.checkbox}>
-                <Checkbox
-                  onChange={(e) => onCheckboxesChange(e)}
-                  prefecture={prefecture}
-                />
-              </div>
+              <Checkbox
+                key={prefecture.prefCode}
+                onChange={(e) => onCheckboxesChange(e)}
+                prefecture={prefecture}
+              />
             ))}
           </div>
           <PrimaryHeading>人口種類別</PrimaryHeading>
