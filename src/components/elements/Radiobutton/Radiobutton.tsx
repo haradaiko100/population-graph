@@ -1,3 +1,5 @@
+import styles from './Radiobutton.module.css';
+
 type RadioButtonProps = {
   populationCategoryName: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -10,7 +12,7 @@ export const RadioButton = ({
   checked,
 }: RadioButtonProps) => {
   return (
-    <div>
+    <div className={styles.radiobutton_container}>
       <input
         type='radio'
         name='population category name'
