@@ -1,3 +1,7 @@
+export type Meta = {
+  title?: string;
+};
+
 export type GraphData = {
   year: number;
   [prefecture: string]: number;
@@ -22,4 +26,9 @@ export type YearData = {
   year: number;
   value: number;
   rate?: number;
+};
+
+export type TextProps = {
+  className?: string;
+  children?: React.ReactNode;
 };
