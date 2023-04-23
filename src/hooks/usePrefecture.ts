@@ -1,8 +1,19 @@
 import { useState } from 'react';
 
+import { findPopulationCategoryIndex } from '@/libs/common';
+
 import { fetchAllPopulation } from '@/api/query';
 import { PopulationTypes } from '@/utils/const';
-import { GraphData, PopulationData, PopulationDataList } from '@/utils/types';
+import {
+  GraphData,
+  PopulationData,
+  PopulationDataList,
+  YearData,
+} from '@/utils/types';
+
+type AllPopulationDataProps = {
+  [prefecture: string]: PopulationData[];
+};
 
 export const usePrefecture = () => {
   const [checkedListPrefectures, setCheckedListPrefectures] = useState<
@@ -15,12 +26,27 @@ export const usePrefecture = () => {
 
   const [graphData, setGraphData] = useState<GraphData>([]);
 
-  const [allPopulationData, setAllPopulationData] = useState<PopulationData[]>(
-    [],
-  );
+  const [allPopulationData, setAllPopulationData] =
+    useState<AllPopulationDataProps>({});
 
   const onRadioButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPopulationCategory(e.target.value);
+
+    const categoryIndex = findPopulationCategoryIndex(populationCategory);
+
+    if (Object.keys(allPopulationData).length > 0) {
+      const newGraphData = graphData.map((data, index) => {
+        const newData = { ...data };
+        Object.keys(data).forEach((key) => {
+          if (key in allPopulationData) {
+            newData[key] =
+              allPopulationData[key][categoryIndex].data[index].value;
+          }
+        });
+        return newData;
+      });
+      setGraphData(newGraphData);
+    }
   };
 
   const onCheckboxesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,19 +60,24 @@ export const usePrefecture = () => {
           Number(value),
         );
 
-        const populationData = populationDataList.data[0].data;
+        setAllPopulationData({
+          ...allPopulationData,
+          [name]: populationDataList.data,
+        });
 
-        const tmpGraphData = graphData.slice();
+        const index = findPopulationCategoryIndex(populationCategory);
+        const populationData: YearData[] = populationDataList.data[index].data;
 
+        const tmpGraphData = [...graphData];
         // graphDataが空の時はyearも追加する
-        if (tmpGraphData.length === 0) {
+        if (graphData.length === 0) {
           populationData.forEach((data) => {
             tmpGraphData.push({ year: data.year, [name]: data.value });
           });
 
           setGraphData(tmpGraphData);
         } else {
-          const newData = tmpGraphData.map((data, index) => ({
+          const newData = graphData.map((data, index) => ({
             ...data,
             [name]: populationData[index].value,
           }));
@@ -61,6 +92,10 @@ export const usePrefecture = () => {
       setCheckedListPrefectures(
         checkedListPrefectures.filter((item, index) => item !== name),
       );
+
+      const tmpAllPopulationData = { ...allPopulationData };
+      delete tmpAllPopulationData[name];
+      setAllPopulationData(tmpAllPopulationData);
 
       setGraphData((prevData) => {
         const newData = prevData.map((data) => {
