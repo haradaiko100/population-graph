@@ -25,7 +25,7 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
     <MainLayout meta={META.top}>
       <div className={styles.container}>
         <div>
-          <h2>都道府県</h2>
+          <h2 className={styles.title}>都道府県</h2>
           <div className={styles.prefecture_container}>
             {ListPrefectures.map((prefecture: Prefecture) => (
               <div key={prefecture.prefCode}>
@@ -36,7 +36,7 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
               </div>
             ))}
           </div>
-          <h2>人口種類別</h2>
+          <h2 className={styles.title}>人口種類別</h2>
           <div className={styles.population_category_container}>
             {PopulationTypes.map((populationType) => (
               <div key={populationType}>
