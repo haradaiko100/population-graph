@@ -1,3 +1,8 @@
+export type GraphData = {
+  year: number;
+  [prefecture: string]: number;
+}[];
+
 export type Prefecture = {
   prefCode: number;
   prefName: string;

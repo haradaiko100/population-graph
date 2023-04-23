@@ -5,7 +5,6 @@ import { TopPage } from '@/components/pages/top/Top.page';
 import { fetchPrefectureList } from '@/api/query';
 import { Prefecture } from '@/utils/types';
 
-
 type HomePageProps = {
   ListPrefectures: Prefecture[];
 };
