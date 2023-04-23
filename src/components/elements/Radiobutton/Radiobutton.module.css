@@ -7,10 +7,22 @@
   border-radius: 5px;
 }
 
-@media screen and (max-width: 600px) {
+.radiobutton_container label {
+  font-size: 18px;
+}
 
+@media screen and (max-width: 768px) {
+  .radiobutton_container {
+    margin: 5px;
+    padding: 5px;
+  }
+  .radiobutton_container label {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 480px) {
-
+  .radiobutton_container label {
+    font-size: 14px;
+  }
 }
