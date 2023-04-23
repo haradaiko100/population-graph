@@ -15,6 +15,7 @@ export const RadioButton = ({
     <div className={styles.radiobutton_container}>
       <input
         type='radio'
+        id={populationCategoryName}
         name='population category name'
         value={populationCategoryName}
         checked={checked}
