@@ -19,6 +19,9 @@ type GraphProps = {
 };
 
 export const PopulationGraph = ({ data, ListDatakey }: GraphProps) => {
+  const colors = ListDatakey.map(
+    () => '#' + Math.floor(Math.random() * 16777215).toString(16),
+  );
   return (
     <div className={styles.container}>
       <ResponsiveContainer width='100%' height='100%'>
@@ -38,8 +41,8 @@ export const PopulationGraph = ({ data, ListDatakey }: GraphProps) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          {ListDatakey.map((dataKey: string) => (
-            <Line dataKey={dataKey} key={dataKey} />
+          {ListDatakey.map((dataKey: string, index: number) => (
+            <Line dataKey={dataKey} key={dataKey} stroke={colors[index]} />
           ))}
         </LineChart>
       </ResponsiveContainer>
