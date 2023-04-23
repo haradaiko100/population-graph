@@ -47,6 +47,7 @@ export const PopulationGraph = ({ data, ListDatakey }: GraphProps) => {
             }}
           />
           <YAxis
+            tickCount={6}
             label={{
               value: '人口数',
               position: 'top',
