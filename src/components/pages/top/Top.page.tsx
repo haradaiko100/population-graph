@@ -25,11 +25,11 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
   return (
     <MainLayout meta={META.top}>
       <div className={styles.container}>
-        <div>
+        <div className={styles.population_prefecture_container}>
           <PrimaryHeading>都道府県</PrimaryHeading>
           <div className={styles.prefecture_container}>
             {ListPrefectures.map((prefecture: Prefecture) => (
-              <div key={prefecture.prefCode}>
+              <div key={prefecture.prefCode} className={styles.checkbox}>
                 <Checkbox
                   onChange={(e) => onCheckboxesChange(e)}
                   prefecture={prefecture}
