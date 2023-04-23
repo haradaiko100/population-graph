@@ -39,13 +39,12 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
           <PrimaryHeading>人口種類別</PrimaryHeading>
           <div className={styles.population_category_container}>
             {PopulationTypes.map((populationType) => (
-              <div key={populationType}>
-                <RadioButton
-                  checked={populationType === populationCategory}
-                  populationCategoryName={populationType}
-                  onChange={(e) => onRadioButtonChange(e)}
-                />
-              </div>
+              <RadioButton
+                key={populationType}
+                checked={populationType === populationCategory}
+                populationCategoryName={populationType}
+                onChange={(e) => onRadioButtonChange(e)}
+              />
             ))}
           </div>
         </div>

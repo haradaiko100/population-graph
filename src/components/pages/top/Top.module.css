@@ -25,19 +25,3 @@
   align-content: center;
 }
 
-.checkbox {
-  width: 20%;
-  text-align: center;
-}
-
-@media (max-width: 600px) {
-  .checkbox {
-    width: 25%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .checkbox {
-    width: 50%;
-  }
-}
