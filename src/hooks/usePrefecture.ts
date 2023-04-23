@@ -19,6 +19,10 @@ export const usePrefecture = () => {
     [],
   );
 
+  const onRadioButtonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPopulationCategory(e.target.value);
+  };
+
   const onCheckboxesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked, value } = e.target;
 
@@ -75,6 +79,10 @@ export const usePrefecture = () => {
 
     // checkbox
     onCheckboxesChange,
+
+    // radio button
+    populationCategory,
+    onRadioButtonChange,
 
     // graph
     graphData,
