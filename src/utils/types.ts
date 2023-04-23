@@ -1,3 +1,7 @@
+export type Meta = {
+  title?: string;
+};
+
 export type GraphData = {
   year: number;
   [prefecture: string]: number;
