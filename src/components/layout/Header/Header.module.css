@@ -1,6 +1,31 @@
 .container {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff8c27;
+  color: #fff;
+  height: 80px;
 }
 
 .title {
+  font-size: 40px;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .container {
+    height: 60px;
+  }
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    height: 50px;
+  }
+  .title {
+    font-size: 25px;
+  }
 }
