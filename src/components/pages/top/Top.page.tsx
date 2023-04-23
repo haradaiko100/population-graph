@@ -1,9 +1,11 @@
 import { Checkbox } from '@/components/elements/Checkbox/Checkbox';
 import { PopulationGraph } from '@/components/elements/Graph/Graph';
 import { RadioButton } from '@/components/elements/Radiobutton/Radiobutton';
+import { PrimaryHeading } from '@/components/elements/Text/Text';
+import { MainLayout } from '@/components/layout/Layout';
 
 import { usePrefecture } from '@/hooks/usePrefecture';
-import { PopulationTypes } from '@/utils/const';
+import { META, PopulationTypes } from '@/utils/const';
 import { Prefecture } from '@/utils/types';
 
 import styles from './Top.module.css';
@@ -21,33 +23,36 @@ export const TopPage = ({ ListPrefectures }: TopPageProps) => {
     onRadioButtonChange,
   } = usePrefecture();
   return (
-    <div className={styles.container}>
-      <div>
-        <h2>都道府県</h2>
-        <div className={styles.prefecture_container}>
-          {ListPrefectures.map((prefecture: Prefecture) => (
-            <div key={prefecture.prefCode}>
+    <MainLayout meta={META.top}>
+      <div className={styles.container}>
+        <div className={styles.population_prefecture_container}>
+          <PrimaryHeading>都道府県</PrimaryHeading>
+          <div className={styles.prefecture_container}>
+            {ListPrefectures.map((prefecture: Prefecture) => (
               <Checkbox
+                key={prefecture.prefCode}
                 onChange={(e) => onCheckboxesChange(e)}
                 prefecture={prefecture}
               />
-            </div>
-          ))}
-        </div>
-        <h2>人口種類別</h2>
-        <div className={styles.population_category_container}>
-          {PopulationTypes.map((populationType) => (
-            <div key={populationType}>
+            ))}
+          </div>
+          <PrimaryHeading>人口種類別</PrimaryHeading>
+          <div className={styles.population_category_container}>
+            {PopulationTypes.map((populationType) => (
               <RadioButton
+                key={populationType}
                 checked={populationType === populationCategory}
                 populationCategoryName={populationType}
                 onChange={(e) => onRadioButtonChange(e)}
               />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        <PopulationGraph
+          data={graphData}
+          ListDatakey={checkedListPrefectures}
+        />
       </div>
-      <PopulationGraph data={graphData} ListDatakey={checkedListPrefectures} />
-    </div>
+    </MainLayout>
   );
 };
